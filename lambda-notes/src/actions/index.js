@@ -22,7 +22,7 @@ export const DELETING_NOTE = 'DELETING_NOTE';
 export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR';
 export const DELETED_NOTE = 'DELETED_NOTE';
 
-const heroku = 'https://immense-plateau-90586.herokuapp.com/api/notes';
+const heroku = 'https://immense-plateau-90586.herokuapp.com';
 const dev = 'http://localhost:5000';
 const token = localStorage.getItem('authtoken');
 const requestOptions = {
@@ -58,12 +58,13 @@ export const edit_note = (id, note) => dispatch => {
   axios
     .put(`${heroku}/api/notes/${id}`, note, requestOptions)
     .then(response => {
-      dispatch({ type: PUT_NOTE, notes: response.data });
-      console.log('response from server====', response);
-      dispatch({ type: PUT_NOTE, note: response.data, id });
+      console.log(response)
+      // dispatch({ type: PUT_NOTE, notes: response.data });
+      // console.log('response from server====', response);
+      dispatch({ type: PUT_NOTE, notes: response.data, id });
     })
     .catch(err => {
-      dispatch({ type: PUT_NOTE_ERROR, errorMessage: 'Error putting note' });
+      dispatch({ type: PUT_NOTE_ERROR, errorMessage: err });
     });
 };
 
