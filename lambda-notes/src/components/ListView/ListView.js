@@ -10,6 +10,7 @@ import './ListView.css';
 class ListView extends Component {
   state = {
     query: '',
+    notes: [],
   };
 
   componentDidMount() {
@@ -17,8 +18,12 @@ class ListView extends Component {
   }
   renderNotes = () => {
     const { filtered, notes } = this.props;
+    console.log('filtered by query', filtered);
+    console.log('unfiltered notes', notes);
     const notesToRender = this.state.query.length > 0 ? filtered : notes;
+    console.log('notestorender', notesToRender);
     return notesToRender.map(note => {
+      console.log('note', note.content);
       return (
         <Link
           to={`/notes/${note._id}`}

@@ -2,6 +2,10 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Nav from './components/Nav/Nav';
+import Home from './components/Home';
+import Login from './Auth/Login';
+import Register from './Auth/Register';
+import Logout from './Auth/Logout';
 import CreateNewNote from './components/CreateNewNote/CreateNewNote';
 import ListView from './components/ListView/ListView';
 import NoteView from './components/NoteView/NoteView';

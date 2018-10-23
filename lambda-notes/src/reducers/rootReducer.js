@@ -28,6 +28,7 @@ const initialState = {
   filtered: [],
   redirect: false,
   error: null,
+  message: null,
 };
 
 export default (state = initialState, action) => {
@@ -84,9 +85,10 @@ export default (state = initialState, action) => {
       console.log('notes', state.notes)
       return {
         ...state,
-        notes: action.notes,
+        notes: initialState.notes,
         deletingNote: false,
         error: null,
+        // message: action.message,
       };
     default:
       return state;
