@@ -58,8 +58,6 @@ export const edit_note = (id, note) => dispatch => {
   axios
     .put(`${heroku}/api/notes/${id}`, note, requestOptions)
     .then(response => {
-<<<<<<< HEAD
-      console.log('res', response)
       dispatch({ type: PUT_NOTE, notes: response.data });
 =======
       console.log('response from server====', response);
