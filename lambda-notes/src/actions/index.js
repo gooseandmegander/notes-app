@@ -59,10 +59,8 @@ export const edit_note = (id, note) => dispatch => {
     .put(`${heroku}/api/notes/${id}`, note, requestOptions)
     .then(response => {
       dispatch({ type: PUT_NOTE, notes: response.data });
-=======
       console.log('response from server====', response);
       dispatch({ type: PUT_NOTE, note: response.data, id });
->>>>>>> f5d0a9890252ee3f898d2e15815eb6b0ab78ab21
     })
     .catch(err => {
       dispatch({ type: PUT_NOTE_ERROR, errorMessage: 'Error putting note' });
