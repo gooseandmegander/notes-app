@@ -6,9 +6,9 @@ export const FETCHING_NOTES = 'FETCHING_NOTES';
 export const GET_NOTES_ERROR = 'GET_NOTES_ERROR';
 export const FETCHED_NOTES = 'FETCHED_NOTES';
 
-export const FETCHING_NOTE_BY_ID = 'FETCHING_NOTE_BY_ID';
-export const FETCHED_NOTE_BY_ID_ERROR = 'GET_NOTE_BY_ID_ERROR';
-export const FETCHED_NOTE_BY_ID = 'FETCHED_NOTE_BY_ID';
+// export const FETCHING_NOTE_BY_ID = 'FETCHING_NOTE_BY_ID';
+// export const FETCHED_NOTE_BY_ID_ERROR = 'GET_NOTE_BY_ID_ERROR';
+// export const FETCHED_NOTE_BY_ID = 'FETCHED_NOTE_BY_ID';
 
 export const PUTTING_NOTE = 'PUTTING_NOTE';
 export const PUT_NOTE_ERROR = 'PUT_NOTE_ERROR';
@@ -24,6 +24,7 @@ export const DELETED_NOTE = 'DELETED_NOTE';
 
 // Get request
 export const get_notes = () => dispatch => {
+  console.log('get Notes called from action')
   dispatch({ type: FETCHING_NOTES });
 
   axios
@@ -32,6 +33,7 @@ export const get_notes = () => dispatch => {
       dispatch({ type: FETCHED_NOTES, notes: response.data });
     })
     .catch(err => {
+      console.log('err', err)
       dispatch({ type: GET_NOTES_ERROR, errorMessage: 'Error fetching notes' });
     });
 };
@@ -48,7 +50,8 @@ export const edit_note = (id, note) => dispatch => {
   axios
     .put(`https://immense-plateau-90586.herokuapp.com/api/notes/${id}`, note)
     .then(response => {
-      dispatch({ type: PUT_NOTE, note: response.data, id });
+      console.log('res', response)
+      dispatch({ type: PUT_NOTE, notes: response.data });
     })
     .catch(err => {
       dispatch({ type: PUT_NOTE_ERROR, errorMessage: 'Error putting note' });
@@ -57,12 +60,15 @@ export const edit_note = (id, note) => dispatch => {
 
 // Post request
 export const post_note = note => dispatch => {
+  console.log('post note called in actions', note)
   dispatch({ type: POSTING_NOTE });
-
+  debugger;
   axios
     .post('https://immense-plateau-90586.herokuapp.com/api/notes', note)
     .then(response => {
-      dispatch({ type: POSTED_NOTE, note });
+      debugger;
+      console.log('res', response);
+      dispatch({ type: POSTED_NOTE, note: response.data });
     })
     .catch(err => {
       dispatch({ type: POST_NOTE_ERROR, errorMessage: 'Error posting note' });

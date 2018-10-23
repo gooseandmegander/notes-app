@@ -1,14 +1,9 @@
-// React and Router
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Redux
 import { connect } from 'react-redux';
+import DeleteNote from '../DeleteNote/DeleteNote';
 
-// Components
-import DeleteNote from '../DeleteNote';
-
-// Styling
 import './NoteView.css';
 
 const NoteView = props => {

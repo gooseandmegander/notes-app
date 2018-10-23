@@ -12,9 +12,9 @@ import {
   DELETING_NOTE,
   DELETE_NOTE_ERROR,
   DELETED_NOTE,
-  FETCHING_NOTE_BY_ID,
-  FETCHED_NOTE_BY_ID_ERROR,
-  FETCHED_NOTE_BY_ID,
+  // FETCHING_NOTE_BY_ID,
+  // FETCHED_NOTE_BY_ID_ERROR,
+  // FETCHED_NOTE_BY_ID,
 } from '../actions';
 
 // initial app state
@@ -63,25 +63,25 @@ export default (state = initialState, action) => {
     case PUT_NOTE:
       return {
         ...state,
-        notes: state.notes.map(note => {
-          return note._id === action.id ? action.note : note;
-        }),
+        notes: action.notes,
         puttingNote: false,
         redirect: true,
       };
-
     case POSTING_NOTE:
-      return { ...state, postingNote: true };
+      return { ...state, postingNote: true, redirect: false };
     case POST_NOTE_ERROR:
       return { ...state, error: action.errorMessage };
     case POSTED_NOTE:
-      return { ...state, postingNote: false, error: null };
+      debugger;
+      return { ...state, notes: [...state.notes, action.note], postingNote: false, redirect: true, error: null };
 
     case DELETING_NOTE:
       return { ...state, deletingNote: true };
     case DELETE_NOTE_ERROR:
-      return { ...state, error: action.errorMessage };
+      return { ...state, error: action.errorMessage, deletingNote: false };
     case DELETED_NOTE:
+      console.log('action notes', action.notes)
+      console.log('notes', state.notes)
       return {
         ...state,
         notes: action.notes,

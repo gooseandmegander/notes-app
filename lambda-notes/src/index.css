@@ -56,12 +56,14 @@ html, body {
     display: inline-block;
     height:100%;
     width: 100%;
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Arial'; */
+
     color: black;
 }
+/* 'Raleway', sans-serif; */
 
 h1, h2, h3, h4, h5, a, button {
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
     color: #4a4a4a;
     letter-spacing: 0.5px;   
 }

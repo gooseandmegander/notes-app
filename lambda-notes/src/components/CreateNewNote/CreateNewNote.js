@@ -1,33 +1,31 @@
-// React and Router
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-// Redux
 import { connect } from 'react-redux';
-
-// Actions
 import { post_note } from '../../actions';
 
-// Styling
 import { Form, Input } from 'reactstrap';
 import './CreateNewNote.css';
 
 class CreateNewNote extends Component {
     state = {
-        title: '',
-        content: ''
+        fields: {
+            title: '',
+            content: ''
+        },
     };
 
     render() {
         return (
             <div className='newNote'>
+                {this.props.redirect ? <Redirect to='/' /> : ''}
                 <h2 className='my-3 py-3'>Create New Note:</h2>
                 <Form method='post' className='form'>
                     <div>
                         <Input placeholder='Note Title'
                             type='text'
                             name='title'
-                            value={this.state.title}
+                            value={this.state.fields.title}
                             onChange={this.handleNewNote}
                             bsSize='lg'
                             className='form-control col-7 my-3 py-3'
@@ -38,33 +36,45 @@ class CreateNewNote extends Component {
                             type='textarea'
                             name='content'
                             data-provide="markdown"
-                            value={this.state.content}
+                            value={this.state.fields.content}
                             onChange={this.handleNewNote}
                             className='form-control mt-3'
-                            style={{height: 390}}
+                            style={{ height: 390 }}
                         />
                     </div>
                     <Link to='/' onClick={this.submitNewNote} className='link m-0 mt-3'>Save</Link>
                 </Form>
             </div>
         )
-    } // end render()
+    } // end render
 
     handleNewNote = event => {
-        event.preventDefault();
-        this.setState({ [event.target.name]: event.target.value });
+        // event.preventDefault();
+        const { name, value } = event.target;
+        const fields = this.state.fields;
+        fields[name] = value;
+        this.setState({ fields });
     }
 
     submitNewNote = event => {
-        const { title, content } = this.state;
+        event.preventDefault();
+        const { title, content } = this.state.fields;
         const note = { title, content };
         this.props.post_note(note);
         this.setState({
-            title: '',
-            content: ''
+            Redirect: true,
+            fields: {
+                title: '',
+                content: ''
+            }
         });
-        setTimeout(() => { window.location.reload(); }, 0);
     }
-} // end CreateNewNote Class
+}
 
-export default connect(null, { post_note })(CreateNewNote);
+const mapStateToProps = state => {
+    return {
+        redirect: state.redirect,
+    }
+}
+
+export default connect(mapStateToProps, { post_note })(CreateNewNote);

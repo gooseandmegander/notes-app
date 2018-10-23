@@ -1,14 +1,9 @@
-// React and Router
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// Redux
 import { connect } from 'react-redux';
-
-// Actions
 import { get_notes, query_notes } from '../../actions';
 
-// Styling
 import { Form, Input } from 'reactstrap';
 import './ListView.css';
 
@@ -44,7 +39,6 @@ class ListView extends Component {
   };
 
   render(props) {
-    console.log('notes', this.props.notes);
     return (
       <div className="list-view pl-4 pt-5">
         <Form className="search">
@@ -60,21 +54,11 @@ class ListView extends Component {
         <div className="list-view-notes">{this.renderNotes()}</div>
       </div>
     );
-  } // end of render()
+  } // end of render
 
   handleSearch = event => {
     event.preventDefault();
     this.setState({ query: event.target.value });
-    const banan = this.props.query_notes(event.target.value);
-    console.log(
-      'this.props.filtered',
-      this.props.filtered,
-      'event',
-      event.target.value,
-      'state',
-      this.state.query,
-      banan
-    );
   };
 } // end of ListView
 
