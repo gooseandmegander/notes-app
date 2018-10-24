@@ -93,7 +93,7 @@ export const delete_note = id => dispatch => {
     .delete(`${heroku}/api/notes/${id}`, requestOptions)
     .then(response => {
       console.log('response from server if success', response);
-      dispatch({ type: DELETED_NOTE, message: 'Note deleted successfully' });
+      dispatch({ type: DELETED_NOTE, notes: response.data });
     })
     .catch(err => {
       dispatch({

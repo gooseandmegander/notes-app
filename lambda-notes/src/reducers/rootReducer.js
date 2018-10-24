@@ -85,7 +85,7 @@ export default (state = initialState, action) => {
       console.log('notes', state.notes)
       return {
         ...state,
-        notes: initialState.notes,
+        notes: action.notes,
         deletingNote: false,
         error: null,
         // message: action.message,
