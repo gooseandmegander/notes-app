@@ -1,4 +1,4 @@
-# Lambda Notes
+# Notes App
 
 A simple web application using a REST api to manage notes.
 
