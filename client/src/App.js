@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Nav from './views/Nav/Nav';
+import Nav from './components/Nav/Nav';
 import CreateNewNote from './views/CreateNewNote/CreateNewNote';
 import ListView from './views/ListView/ListView';
 import NoteView from './views/NoteView/NoteView';
